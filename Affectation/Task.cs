@@ -13,16 +13,16 @@ namespace Affectation
             new List<int>() {10,5,9,18,11},
             new List<int>() {13,19,6,12,14},
             new List<int>() {3,2,4,4,5},
-            new List<int>() {18,9,12,17,15},
-            new List<int>() {11,6,14,19,10}
+            new List<int>() {1,9,12,17,15},
+            new List<int>() {1,6,14,19,10}
         };
         protected List<List<int>> tache { get; set; } = new List<List<int>>()
         {
             new List<int>() {10,5,9,18,11},
-            new List<int>() {13,19,6,12,14},
+            new List<int>() {13,0,6,12,14},
             new List<int>() {3,2,4,4,5},
-            new List<int>() {18,9,12,17,15},
-            new List<int>() {11,6,14,19,10}
+            new List<int>() {1,9,12,17,15},
+            new List<int>() {1,6,14,19,10}
         };
         protected int mr;
         protected List<int> D = new List<int>();
@@ -60,6 +60,9 @@ namespace Affectation
                 // Si la colonne de C contient d'autre base
                 while (this.checkIfCContainOtherBase())
                 {
+
+                    this.A.Add(this.indexLastC[1]);
+                    this.A_.Remove(this.indexLastC[1]);
                     Console.WriteLine("===============================================================================");
                     Console.WriteLine("Contient d'autre base");
                     this.getMinMr();
@@ -113,6 +116,7 @@ namespace Affectation
             Console.WriteLine("Avoir le MR minimum");
             // Max d'entier
             int min = int.MaxValue;
+            int result = 0;
             for(int i = 0; i < this.tache.Count;i++)
             {
 
@@ -121,19 +125,21 @@ namespace Affectation
                     if(this.baseMinIndex[i] == this.A[j])
                     {
                         var a = this.getMinRowIndexWithException(this.tache[i]);
-                        if (min > this.tache[i][a] - this.tache[i][this.baseMinIndex[i]])
+                        result = this.tache[i][a] - this.tache[i][this.baseMinIndex[i]];
+                        if (min > result)
                         {
                             Console.WriteLine("Min ligne :" + a);
 
-                            this.mr = this.tache[i][a] - this.tache[i][this.baseMinIndex[i]];
                             this.indexLastC[0] = i;
                             this.indexLastC[1] = a;
 
 
-                            min = this.mr;
+                            min = result;
                         }
                     }
                 }
+
+                this.mr = result;
 
             }
             Console.WriteLine("Mr a la ligne " + this.indexLastC[0] + "a la colonne : " + this.indexLastC[1]);
@@ -155,12 +161,10 @@ namespace Affectation
         // Cherche d'autre base.
         public bool checkIfCContainOtherBase()
         {
-            for(int i = 0;i <this.tache.Count;i++)
+            for(int i = 0;i <this.baseMinIndex.Count;i++)
             {
                     if (this.baseMinIndex[i] == this.indexLastC[1])
                     {
-                        this.A.Add(this.indexLastC[1]);
-                        this.A_.Remove(this.indexLastC[1]);
                         return true;
                     }
             }
