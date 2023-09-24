@@ -11,11 +11,12 @@ namespace Affectation
         protected List<List<int>> tacheOriginal { get; set; }
         protected List<List<int>> tache { get; set; } = new List<List<int>>()
         {
-            new List<int>() {10,5,9,18,11},
-            new List<int>() {13,19,6,12,14},
-            new List<int>() {3,2,4,4,5},
-            new List<int>() {0,9,12,17,15},
-            new List<int>() {11,6,14,19,10}
+            new List<int>() {1151,515,921,18,11,48},
+            new List<int>() {13,100,6,26,14,48},
+            new List<int>() {31,2,4,150,4,48},
+            new List<int>() {78,9,12,0,15,48},
+            new List<int>() {198,600,14,19,114, 48 },
+            new List<int>() {198,600,14,19,114,48}
         };
         protected int mr;
         protected List<int> D = new List<int>();
@@ -38,7 +39,8 @@ namespace Affectation
         public void init()
         {
             var i = 0;
-            while(this.checkIfFinish() || i==0)
+            this.checkMin();
+            while(this.checkIfFinish())
             {
                 Console.WriteLine("INDEX : " + i);
                 this.printTache();
@@ -69,7 +71,12 @@ namespace Affectation
                     this.printTache();
                     
                 }
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("==================================================================================");
                 Console.WriteLine("+++++++++++++++++++++++++++++++FIND AND DELETE BASE+++++++++++++++++++++++++++++++");
+                Console.WriteLine("==================================================================================");
+                Console.ResetColor();
                 this.findLastBaseAndDelete();
                 Console.WriteLine("Last C index :" + this.indexLastC[0] + " colonne de C :" + this.indexLastC[1]);
                 this.checkIfReRunAlgorithm();
@@ -211,7 +218,6 @@ namespace Affectation
                     return true;
                 }
             }
-            this.indexLastC = null;
             return false;
         }
 
