@@ -8,21 +8,14 @@ namespace Affectation
 {
     class Task
     {
-        protected List<List<int>> tacheOriginal { get; set; } = new List<List<int>>()
+        protected List<List<int>> tacheOriginal { get; set; }
+        protected List<List<int>> tache { get; set; } = new List<List<int>>()
         {
             new List<int>() {10,5,9,18,11},
             new List<int>() {13,19,6,12,14},
             new List<int>() {3,2,4,4,5},
-            new List<int>() {1,9,12,17,15},
-            new List<int>() {1,6,14,19,10}
-        };
-        protected List<List<int>> tache { get; set; } = new List<List<int>>()
-        {
-            new List<int>() {10,5,9,18,11},
-            new List<int>() {13,0,6,12,14},
-            new List<int>() {3,2,4,4,5},
-            new List<int>() {1,9,12,17,15},
-            new List<int>() {1,6,14,19,10}
+            new List<int>() {0,9,12,17,15},
+            new List<int>() {11,6,14,19,10}
         };
         protected int mr;
         protected List<int> D = new List<int>();
@@ -39,6 +32,7 @@ namespace Affectation
         {
             this.A = new List<int>();
             this.A_ = new List<int>();
+            this.tacheOriginal = this.tache;
         }
 
         public void init()
@@ -48,7 +42,10 @@ namespace Affectation
             {
                 Console.WriteLine("INDEX : " + i);
                 this.printTache();
-                this.checkMin();
+                if(i < 1)
+                {
+                    this.checkMin();
+                }
                 this.printMinIndex();
                 this.insertBaseToA();
                 this.printBase();
@@ -128,7 +125,10 @@ namespace Affectation
                         result = this.tache[i][a] - this.tache[i][this.baseMinIndex[i]];
                         if (min > result)
                         {
-                            Console.WriteLine("Min ligne :" + a);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Min ligne :" + i + " a la colonne " + a);
+
+                            Console.ResetColor();
 
                             this.indexLastC[0] = i;
                             this.indexLastC[1] = a;
@@ -139,9 +139,10 @@ namespace Affectation
                     }
                 }
 
-                this.mr = result;
-
             }
+
+            this.mr = min;
+
             Console.WriteLine("Mr a la ligne " + this.indexLastC[0] + "a la colonne : " + this.indexLastC[1]);
             this.listIndexC.Add(this.indexLastC);
 
