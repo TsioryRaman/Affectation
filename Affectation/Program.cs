@@ -10,10 +10,15 @@ namespace Affectation
     {
         static void Main(string[] args)
         {
+            // GROUPE ROCCO MSI 5
             var task = new Task();
 
             task.init();
-
+            Console.WriteLine("");
+            Console.WriteLine("===============================================================================");
+            Console.WriteLine("==============================GROUPE ROCCO MSI 5===============================");
+            Console.WriteLine("=================TSIORY SITRAKA TOKY MAHERY DIDI TAHIANA=======================");
+            Console.WriteLine("===============================================================================");
             Console.ReadKey();
         }
     }

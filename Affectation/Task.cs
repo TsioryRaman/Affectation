@@ -11,12 +11,11 @@ namespace Affectation
         protected List<List<int>> tacheOriginal { get; set; }
         protected List<List<int>> tache { get; set; } = new List<List<int>>()
         {
-            new List<int>() {1151,515,921,18,11,48},
-            new List<int>() {13,100,6,26,14,48},
-            new List<int>() {31,2,4,150,4,48},
-            new List<int>() {78,9,12,0,15,48},
-            new List<int>() {198,600,14,19,114, 48 },
-            new List<int>() {198,600,14,19,114,48}
+            new List<int>() {10,5,9,18,11},
+            new List<int>() {13,19,6,12,14},
+            new List<int>() {3,2,4,4,5},
+            new List<int>() {18,9,12,17,15},
+            new List<int>() {11,6,14,19,10},
         };
         protected int mr;
         protected List<int> D = new List<int>();
@@ -38,6 +37,11 @@ namespace Affectation
 
         public void init()
         {
+
+            Console.WriteLine("===============================================================================");
+            Console.WriteLine("==============================GROUPE ROCCO MSI 5===============================");
+            Console.WriteLine("=================TSIORY SITRAKA TOKY MAHERY DIDI TAHIANA=======================");
+            Console.WriteLine("===============================================================================");
             var i = 0;
             this.checkMin();
             while(this.checkIfFinish())
